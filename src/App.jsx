@@ -103,7 +103,7 @@ function App() {
   }
   return <main>
     <div className="image-container">
-      <img src="game-logo.png" alt="Description" style={myStyle} />
+      <img src={`${import.meta.env.BASE_URL}game-logo.png`} alt="Description" style={myStyle} />
     </div>
     <div className="image-container">
     <h1>Tic-Tac-Toe</h1>
