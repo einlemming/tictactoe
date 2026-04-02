@@ -126,6 +126,14 @@ h1 {
   align-items: center;
 }
 
+.game-logo {
+  color: white;
+  background-color: dodgerblue;
+  padding: 10px;
+  width: 180px;
+  font-family: sans-serif;
+}
+
 .player input {
   font: inherit;
   font-size: 1rem;

@@ -3,6 +3,7 @@ import GameBoard from './GameBoard.jsx';
 import Log from './components/Log.jsx';
 import GameOver from './components/GameOver.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
+import { useState } from 'react';
 
 const PLAYERS = {
   X: 'Player 1',
@@ -15,20 +16,11 @@ const INITIAL_GAME_BOARD = [
   [null, null,  null],
 ];
 
-import { useState } from 'react';
-const myStyle = {
-  color: "white",
-  backgroundColor: "DodgerBlue",
-  padding: "10px",
-  width: "180px",
-  fontFamily: "Sans-Serif"
-};
-
 function deriveActivePlayer(gameTurns) { // outside App, no need to state update, doesnt need to be recreated
   let currentPlayer = 'X';
 
   if(gameTurns.length > 0 && gameTurns[0].player === 'X') {
-    currentPlayer = '0';
+    currentPlayer = 'O';
   }
   return currentPlayer;
 }
@@ -54,7 +46,7 @@ function deriveWinner(gameBoard, players) {
     if (
       firstSquareSymbol && 
       firstSquareSymbol === secondSquareSymbol && 
-      secondSquareSymbol == thirdSquareSymbol
+      secondSquareSymbol === thirdSquareSymbol
     ) {
       //winner = firstSquareSymbol; // 'X' oder 'O'
       winner = players[firstSquareSymbol];
@@ -75,7 +67,6 @@ function App() {
   const hasDraw = gameTurns.length === 9 && !winner;
 
   function handleSelectSquare(rowIndex, colIndex) {
-    console.log(rowIndex);
     //setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X');
     setGameTurns(prevTurns => {
     const currentPlayer = deriveActivePlayer(prevTurns);
@@ -103,7 +94,7 @@ function App() {
   }
   return <main>
     <div className="image-container">
-      <img src={`${import.meta.env.BASE_URL}game-logo.png`} alt="Description" style={myStyle} />
+      <img className="game-logo" src={`${import.meta.env.BASE_URL}game-logo.png`} alt="Description" />
     </div>
     <div className="image-container">
     <h1>Tic-Tac-Toe</h1>
